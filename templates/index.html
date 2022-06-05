@@ -26,7 +26,7 @@
 <div class="content-top ">
 	<div class="container ">
 		<div class="spec ">
-			<h3>Special Offers</h3>
+			<h3>Hot Offers</h3>
 			<div class="ser-t">
 				<b></b>
 				<span><i></i></span>
@@ -37,28 +37,34 @@
 				<nav class="nav-sidebar">
 					<ul class="nav tabs ">
 						{% for cat in categories %}
-					  <li class="{{cat.status}}"><a href="#{{cat.id}}" data-toggle="tab">Staples</a></li>
+					  <li class="{{cat.status}}"><a href="#{{cat.id}}" data-toggle="tab">{{cat.name}}</a></li>
 						{% endfor %}
 						
 					</ul>
 				</nav>
 				<div class=" tab-content tab-content-t ">
-					{% for hot in hots %}
-					<div class="tab-pane {{hot.status}} text-style" id="{{hot.category_id}}">
+					{% for cat in categories %}
+					<div class="tab-pane {{cat.status}} text-style" id="{{cat.id}}">
 						<div class=" con-w3l">
-							{%%}
+							{% for hot in hots %}
+							{% if cat.id == hot.category_id %}
 							<div class="col-md-3 m-wthree">
 								<div class="col-m">								
-									<a href="#" data-toggle="modal" data-target="#myModal1" class="offer-img">
-										<img src="{% static 'images/of.png' %}" class="img-responsive" alt="">
-										<div class="offer"><p><span>Offer</span></p></div>
+									<a href="#" data-toggle="modal" data-target="#{{hot.category_id}}" class="offer-img">
+										<img src="{{hot.image.url}}" class="img-responsive" alt="">
+										<div class="offer"><p><span>Hot</span></p></div>
 									</a>
 									<div class="mid-1">
 										<div class="women">
-											<h6><a href="single.html">Moong</a>(1 kg)</h6>							
+											<h6><a href="/detail/{{hot.slug}}">{{hot.name}}</a></h6>							
 										</div>
 										<div class="mid-2">
-											<p ><label>$2.00</label><em class="item_price">$1.50</em></p>
+											{% if hot.discounted_price > 0 %}
+											<p ><label>${{hot.price}}</label><em class="item_price">${{hot.discounted_price}}</em></p>
+											{% else %}
+											<p ><em class="item_price">${{hot.price}}</em></p>
+
+											 {% endif %}
 											  <div class="block">
 												<div class="starbox small ghosting"> </div>
 											</div>
@@ -71,6 +77,8 @@
 									</div>
 								</div>
 							</div>
+							{% endif %}
+			{% endfor %}
 							<div class="clearfix"></div>
 						 </div>
 					</div>
@@ -85,9 +93,9 @@
 <!--content-->
 <div class="content-mid">
 	<div class="container">
+		{% for ad in ads %}
+		{% if ad.rank == 1 %}
 		<div class="col-md-4 m-w3ls">
-			{% for ad in ads %}
-			{% if ad.rank == 1 %}
 			<div class="col-md1 ">
 				<a href="kitchen.html">
 					<img src="{{ad.image.url}}" class="img-responsive img" alt="">
@@ -194,7 +202,7 @@
 									</a>
 									<div class="mid-1">
 										<div class="women">
-											<h6><a href="single.html">{{offer.name}}</a></h6>							
+											<h6><a href="/detail/{{offer.slug}}">{{offer.name}}</a></h6>							
 										</div>
 										<div class="mid-2">
 											{% if offer.discounted_price > 0 %}

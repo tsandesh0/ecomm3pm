@@ -75,7 +75,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 		<div class="container">
 			
 			<div class="logo">
-				<h1 ><a href="index.html"><b>T<br>H<br>E</b>Big Store<span>The Best Supermarket</span></a></h1>
+				<h1 ><a href="/"><b>T<br>H<br>E</b>Big Store<span>The Best Supermarket</span></a></h1>
 			</div>
 			<div class="head-t">
 				<ul class="card">
@@ -112,7 +112,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 					</div> 
 					<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 						<ul class="nav navbar-nav ">
-							<li class=" active"><a href="index.html" class="hyper "><span>Home</span></a></li>	
+							<li class=" active"><a href="/" class="hyper "><span>Home</span></a></li>	
 							
 							{% for cat in categories %}
 							<li class="dropdown ">
@@ -125,15 +125,18 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 												{% for subcat in subcategories %}
 												{% if subcat.category_id == cat.id %}
 			
-												<li><a href="kitchen.html"><i class="fa fa-angle-right" aria-hidden="true"></i>{{subcat.name}}</a></li>
+												<li><a href="/subcat/{{subcat.slug}}"><i class="fa fa-angle-right" aria-hidden="true"></i>{{subcat.name}}</a></li>
 												{% endif %}
-												{% endfor %}
+
+
+														{% endfor %}
 											</ul>
 										
 										</div>
-									</div>
+							
 										<div class="col-sm-3 w3l">
 											<a href="kitchen.html"><img src="{{subcat.image.url}}" class="img-responsive" alt=""></a>
+										</div>
 										</div>
 										<div class="clearfix"></div>
 									</div>	
@@ -164,8 +167,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 
 
 
-
-<!--footer-->
+<!-- footer-->
 <div class="footer">
 	<div class="container">
 		<div class="col-md-3 footer-grid">
@@ -177,7 +179,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 		<div class="col-md-3 footer-grid ">
 			<h3>Menu</h3>
 			<ul>
-				<li><a href="index.html">Home</a></li>
+				<li><a href="/">Home</a></li>
 				<li><a href="kitchen.html">Kitchen</a></li>
 				<li><a href="care.html">Personal Care</a></li>
 				<li><a href="hold.html">Household</a></li>						 
@@ -234,7 +236,10 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 		</div>
 	</div>
 </div>
-<!-- //footer-->
+<!--//footer -->
+
+
+
 
 <!-- smooth scrolling -->
 	<script type="text/javascript">

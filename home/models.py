@@ -11,7 +11,7 @@ from django.db import models
 class Category(models.Model):
 	name = models.CharField(max_length = 300)
 	slug = models.TextField()
-	
+	status = models.CharField(max_length = 50,blank = True ,choices = (('active','Active'),('','Default')))
 
 	def __str__(self):
 		return self.name
@@ -54,9 +54,11 @@ class Product(models.Model):
 	discription = models.TextField(blank = True)
 	status = models.CharField(max_length = 50 , choices = (('active','Active'),('','Default')))
 	labels = models.CharField(max_length = 500 , choices = LABELS,blank = True)
+	slug = models.TextField()
 
 	def __str__(self):
 		return self.name
+
 
 
 
